@@ -1,0 +1,11 @@
+﻿firm_id,password,longitude,latitude,d_c_s_id,loc_info,grid_id,show_MA_quantile_bysector0,show_MA_quantile_bysector1,show_MA_quantile_bysector2,show_MA_Poll,Pll_qnt,MA_qn_0,MA_qn_1,MA_qn_2
+identifier_24,password_73,32.52783332,0.718884134,LUWERO KATIKAMU WOBULWNZI TOWN COUNCIL,"Wobulenzi Town Council, Katikamu, Luwero",4149_44,0,1,1,0,0,2,2,0
+identifier_91,password_3,32.6394566,0.375152115,WAKISO KIRA MUNICIPALITY NAMUGONGO DIVISION,"Wakiso, Kira Municipality, Namugongo Division",4627_45,1,0,1,0,0,0,0,0
+identifier_87,password_20,34.08168733,0.455739697,BUSIA SAMIA-BUGWE DABANI,"Dabani, Samia-Bugwe, Busia",7074_57,0,0,1,0,0,0,0,0
+identifier_85,password_72,32.64096784,0.348441783,WAKISO KIRA MUNICIPALITY NAMUGONGO DIVISION,"Wakiso, Kira Municipality, Namugongo Division",4627_21,1,0,0,0,1,0,0,0
+identifier_51,password_38,34.34243068,1.001688811,BUDUDA MANJIYA BUDUDA TOWN COUNCIL,"Bududa Town Council, Manjiya, Bududa",5423_4,0,0,1,1,1,0,0,0
+identifier_19,password_44,29.73628794,0.013037512,KASESE BUKONZO MPONDWE/LHUBIRIHA TOWN COUNCIL,"Mpondwe-Lhubiriha Town Council, Bukonjo, Kasese",1448_1,1,1,1,1,0,0,0,0
+identifier_14,password_89,31.75221492,-0.32513221,MASAKA MASAKA MUNICIPALITY NYENDO-SSENYANGE,"Masaka Municipal Council, Nyendo Ssenyange",5582_7,0,1,0,0,0,0,0,0
+identifier_52,password_90,30.27274549,0.660121671,KABAROLE FORT PORTAL MUNICIPALITY WESTERN DIVISION,"Fort Portal Municipality, Kabarole District, Western",3216_2,0,1,1,1,0,0,0,0
+identifier_45,password_27,33.47094506,0.6022302,IGANGA IGANGA MUNICIPALITY CENTRAL,"Iganga Municipality, Central Division",3349_8,0,1,0,0,0,0,0,0
+identifier_58,password_98,34.34395205,1.051260949,BUDUDA MANJIYA BUSHIKA,"Bushika, Manjiya, Bududa",5476_9,0,1,1,1,2,0,0,0

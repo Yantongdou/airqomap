@@ -1,0 +1,146 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Air Quality Map</title>
+    <link href="{{ url_for('static', filename='css/map_style.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.21/"></script>
+    <script type="text/javascript">
+        var lon = {{ lon }};
+        var lat = {{ lat }};
+        var pll_qnt = {{ pll_qnt }};
+        var MA_0 = {{ MA_0 }};
+        var MA_1 = {{ MA_1 }};
+        var MA_2 = {{ MA_2 }};
+        var level_lst = ['No-Data', 'Low', 'Average', 'High'];
+        var show_MA_0 = {{ show_MA_0 }};
+        var show_MA_1 = {{ show_MA_1 }};
+        var show_MA_2 = {{ show_MA_2 }};
+        var show_pll = {{ show_pll }};
+    </script>
+    <script type="text/javascript">
+        var AccessToken = {{ token|tojson }};
+        var firm_id = {{ firm_id|tojson }};
+        var survey_flag = {{ survey_flag }}
+    </script>
+    <script src="{{ url_for('static', filename='JS/map.js') }}" type="text/javascript"></script>
+    <script language=javascript>
+        function openwin() {
+            if (survey_flag===0){
+                var hdc = window.open("https://docs.google.com/forms/d/e/1FAIpQLSchBnOzy29XqboCDfQKFg5fTnWVE_onyWCjFIh9bfqbQRKEbQ/viewform?usp=pp_url&entry.1617842670=" + firm_id,"new","height=600,width=600,top=10,left=20,resizable=no, location=no",false);
+                width = screen.width;
+                height = screen.height;
+                hdc.moveTo((width-600)/2,(height-600)/2);
+                return false
+            }
+        }
+        setTimeout("openwin()",180000);
+    </script>
+    <script language=javascript>
+        function survey() {
+            if (survey_flag===1){
+                var r=confirm("You have already filled out the survey.\nClick OK if you would like to fill it out again.");
+                if (r===true)
+                {
+                    var hdc = window.open("https://docs.google.com/forms/d/e/1FAIpQLSchBnOzy29XqboCDfQKFg5fTnWVE_onyWCjFIh9bfqbQRKEbQ/viewform?usp=pp_url&entry.1617842670=" + firm_id,"new","height=600,width=600,top=10,left=20,resizable=no, location=no",false);
+                    width = screen.width;
+                    height = screen.height;
+                    hdc.moveTo((width-600)/2,(height-600)/2);
+                    return false
+                }
+            }
+            else{
+                var hdc = window.open("https://docs.google.com/forms/d/e/1FAIpQLSchBnOzy29XqboCDfQKFg5fTnWVE_onyWCjFIh9bfqbQRKEbQ/viewform?usp=pp_url&entry.1617842670=" + firm_id,"new","height=600,width=600,top=10,left=20,resizable=no, location=no",false);
+                width = screen.width;
+                height = screen.height;
+                hdc.moveTo((width-600)/2,(height-600)/2);
+                return false
+            }
+        }
+    </script>
+</head>
+<body onload="openwin(); return false;" >
+    <div class="map" >
+        <div class="full_map" id="search_map">
+             <div id="viewDiv"  style="width:100%; height:100%">
+            </div>
+        </div>
+        <div class="left_bar" id="search_result" >
+            <div class="image">
+                <form class="survey">
+                    <input type="submit" value="Survey" class="btn" onclick='survey(); return false;'>
+                </form>
+                <form class="logout" action="{{ url_for('logout') }}" method="POST">
+                    <input type="submit" value="Logout" class="btn" onclick='{{ url_for("logout") }}'>
+                </form>
+                <img src="/static/images/Kampala-city.jpg" style="height:250px;">
+            </div>
+            <div class="company_name">
+                Company ID:
+                <script>
+                    document.write("{{ request.cookies.get('username')[3:] }}");
+                </script>
+            </div>
+            <div class="county_city">
+                <script>
+                    document.write("{{ loc_info }}");
+                </script>
+            </div>
+            <div class="link-top"></div>
+            <div class="company_info_title">Sector</div>
+            <div class="info">
+                <script>
+                    document.write("{{ sector }}");
+                </script>
+            </div>
+            <div class="link-top"></div>
+            <div class="quality" id="quality_div" style="display:none">
+                Air Pollution:
+                <script>
+                    document.write(level_lst[pll_qnt]);
+                </script>
+            </div>
+            <div class="quality" id="furniture_div" style="display:none">
+                Relative Market Access for Furniture:
+                <script>
+                    document.write(level_lst[MA_0]);
+                </script>
+            </div>
+            <div class="quality" id="welding_div" style="display:none">
+                Relative Market Access for Welding:
+                <script>
+                    document.write(level_lst[MA_1]);
+                </script>
+            </div>
+            <div class="quality" id="maize_div" style="display:none">
+                Relative Market Access for Maize:
+                <script>
+                    document.write(level_lst[MA_2]);
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        if(show_pll===1){
+            document.getElementById('quality_div').style.display="";
+        }
+        if(show_MA_0===1){
+            document.getElementById('furniture_div').style.display="";
+        }
+        if(show_MA_1===1){
+            document.getElementById('welding_div').style.display="";
+        }
+        if(show_MA_2===1){
+            document.getElementById('maize_div').style.display="";
+        }
+    }
+</script>
+<script>
+    window.onbeforeunload = function() {
+        window.location.href = "{{ url_for('logout') }}";
+    }
+</script>
+</html>
